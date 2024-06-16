@@ -1,0 +1,16 @@
+{
+  "title": "时间线",
+  "tableSource": "数据源",
+  "field.milestone": "里程碑名称",
+  "field.expectedTime": "计划完成时间",
+  "field.actualTime": "实际完成时间",
+  "placeholder.pleaseSelectField": "请选择字段",
+  "placeholder.pleaseSelectTable": "请选择数据表",
+  "placeholder.pleaseInputText": "请输入文字",
+  "button.confirm": "确定",
+  "toast.error": "请先完成表单内所有内容",
+  "state.finished": "已完成",
+  "state.overdueFinished": "逾期已完成",
+  "state.overdueUnfinished": "逾期未完成",
+  "state.unfinished": "未完成"
+}

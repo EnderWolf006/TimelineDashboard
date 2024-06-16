@@ -1,0 +1,31 @@
+.title {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.select {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.prompt {
+  margin-bottom: 8px;
+  color: var(--text-shallow);
+}
+
+.subContainer {
+  display: flex;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.subPrompt {
+  padding-right: 8px;
+  color: var(--text-shallow-2);
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.subInput {
+  flex-grow: 0;
+}
