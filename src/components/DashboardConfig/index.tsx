@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useState } from "react";
 import "./style.css";
 import { FieldType, base, bitable, dashboard } from '@lark-base-open/js-sdk';
-import { Input, Select, Toast } from "@douyinfe/semi-ui";
+import { Button, Input, Select, Toast } from "@douyinfe/semi-ui";
 
 let isInited = false
 
@@ -100,8 +100,12 @@ function DashboardConfig(props: any, ref: any) {
 
   return (
     <>
-      <div className="title">{t('title')}</div>
-
+      <div className="title">
+        <div className="titlet">
+          <div style={{ "display": "inline" }} >{t('title')}</div>
+          <a className="help" href="https://wingahead.feishu.cn/wiki/NjoJwa38WidGiikx8i2cyUeKnsd?from=from_copylink">帮助文档</a>
+        </div>
+      </div>
       <div className="prompt">{t('tableSource')}</div>
       <Select placeholder={t('placeholder.pleaseSelectTable')} size="large" className="select" optionList={
         tableList.map((v: any) => { return { label: v.tableName, value: v.tableId } })

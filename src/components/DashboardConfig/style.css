@@ -3,6 +3,12 @@
   margin-bottom: 16px;
 }
 
+.titlet {
+  display: inline;
+  position: relative;
+}
+
+
 .select {
   width: 100%;
   margin-bottom: 16px;
@@ -28,4 +34,16 @@
 
 .subInput {
   flex-grow: 0;
+}
+
+.help {
+  font-size: 16px;
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  transform: translateY(-100%);
+  width: 100px;
+  margin-left: 6px;
+  color: rgb(20, 86, 240);
+  text-decoration: none;
 }
