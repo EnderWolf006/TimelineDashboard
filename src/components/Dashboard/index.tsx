@@ -61,7 +61,7 @@ export default function Dashboard() {
   useConfig(updateConfig)
 
   return (
-    <main style={isConfig ? {} : { borderTop: 'none'}}>
+    <main style={isConfig ? {} : { borderTop: 'none' }}>
       <div className='layout-view' >
         <_DashboardView
           t={t}
@@ -117,7 +117,7 @@ function ConfigPanel(props: {
   return (
     <>
       <div className="layout-cfg-main">
-        <DashboardConfig config={config} setConfig={setConfig} t={t} ref={configRef}></DashboardConfig>
+        <DashboardConfig config={config} setConfig={setConfig} t={t} ref={configRef} onConfigChange={(e: any) => { setConfig(e) }}></DashboardConfig>
       </div>
       <div className="layout-cfg-btn">
         <Button type='primary' theme='solid' size='large' className='confirmButton' onClick={onSaveConfig}>{t('button.confirm')}</Button>

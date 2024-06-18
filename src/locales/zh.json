@@ -5,6 +5,7 @@
   "field.expectedTime": "计划完成时间",
   "field.actualTime": "实际完成时间",
   "placeholder.pleaseSelectField": "请选择字段",
+  "placeholder.pleaseSelectDateField": "请选择日期字段",
   "placeholder.pleaseSelectTable": "请选择数据表",
   "placeholder.pleaseInputText": "请输入文字",
   "button.confirm": "确定",

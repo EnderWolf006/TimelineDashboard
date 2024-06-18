@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { bitable, dashboard } from '@lark-base-open/js-sdk';
+import { Tooltip } from "@douyinfe/semi-ui";
 
 let configing = false
 
@@ -67,10 +68,16 @@ function Item({ milestone, expectedTime, actualTime }: any) {
   const stateStyle = stateStyleConfig[computeState(expectedTime, actualTime)]
   return (
     <div className={c("item")} style={{ '--primaryColor': stateStyle.color, '--secondaryColor': stateStyle.background } as React.CSSProperties}>
-      <div className={c("milestone")}>{abbrText(milestone)}</div>
+      {milestone.length > 30 ?
+        <Tooltip content={milestone} position="right">
+          <div className={c("milestone")}>{abbrText(milestone)}</div>
+        </Tooltip> :
+        <div className={c("milestone")}>{abbrText(milestone)}</div>
+      }
       <div className={c("circle")}></div>
       <div className={c("state")}>{stateStyle.text}</div>
       <div className={c("datetime")}>{formatTime(expectedTime)}</div>
+
     </div>
   )
 }
