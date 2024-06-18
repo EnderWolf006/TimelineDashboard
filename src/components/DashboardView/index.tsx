@@ -83,8 +83,11 @@ function Item({ milestone, expectedTime, actualTime }: any) {
 }
 
 export function DashboardView(props: any) {
-  const { config, isConfig, t } = props;
-
+  const { isConfig, t, previewConfig } = props;
+  let config = props['config']
+  if (previewConfig) {        
+    config = previewConfig
+  }
   const [timelineData, setTimelineData] = useState([]) as any;
   useEffect(() => {
     configing = isConfig

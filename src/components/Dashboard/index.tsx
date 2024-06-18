@@ -14,6 +14,8 @@ export default function Dashboard() {
 
   const { t, i18n } = useTranslation();
 
+  const [previewConfig, setPreviewConfig] = useState(null) as any
+
   // create时的默认配置
   const [config, setConfig] = useState({
     milestoneFieldId: null,
@@ -67,12 +69,13 @@ export default function Dashboard() {
           t={t}
           config={config}
           isConfig={isConfig}
+          previewConfig={previewConfig}
         />
       </div>
       {
         isConfig && (
           <div className='layout-cfg'>
-            <ConfigPanel t={t} config={config} setConfig={setConfig} />
+            <ConfigPanel t={t} config={config} setConfig={setConfig} setPreviewConfig={setPreviewConfig} />
           </div>
         )
       }
@@ -84,13 +87,14 @@ export default function Dashboard() {
 interface IDashboardView {
   config: any,
   isConfig: boolean,
+  previewConfig: any,
   t: TFunction<"translation", undefined>,
 }
-function _DashboardView({ config, isConfig, t }: IDashboardView) {
+function _DashboardView({ config, isConfig, t, previewConfig }: IDashboardView) {
   return (
     <>
       <div className="view">
-        <DashboardView config={config} isConfig={isConfig} t={t}></DashboardView>
+        <DashboardView config={config} isConfig={isConfig} t={t} previewConfig={previewConfig}></DashboardView>
       </div>
     </>
   );
@@ -99,9 +103,10 @@ function _DashboardView({ config, isConfig, t }: IDashboardView) {
 function ConfigPanel(props: {
   config: any,
   setConfig: any,
+  setPreviewConfig: any,
   t: TFunction<"translation", undefined>,
 }) {
-  const { config, setConfig, t } = props;
+  const { config, setConfig, t, setPreviewConfig } = props;
   const configRef = useRef(null) as any;
   /**保存配置 */
   const onSaveConfig = () => {
@@ -117,7 +122,7 @@ function ConfigPanel(props: {
   return (
     <>
       <div className="layout-cfg-main">
-        <DashboardConfig config={config} setConfig={setConfig} t={t} ref={configRef} onConfigChange={(e: any) => { setConfig(e) }}></DashboardConfig>
+        <DashboardConfig config={config} setConfig={setConfig} t={t} ref={configRef} onConfigChange={(e: any) => { setPreviewConfig(e) }}></DashboardConfig>
       </div>
       <div className="layout-cfg-btn">
         <Button type='primary' theme='solid' size='large' className='confirmButton' onClick={onSaveConfig}>{t('button.confirm')}</Button>
