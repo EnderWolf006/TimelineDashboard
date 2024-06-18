@@ -5,12 +5,12 @@ import { Button, Input, Select, Toast } from "@douyinfe/semi-ui";
 
 let isInited = false
 
-function FieldSelect({ t, fieldList, promptTKey, fieldId, setFieldId, fieldType, placeholder }: any) {
+function FieldSelect({ t, fieldList, promptTKey, fieldId, setFieldId, fieldType, placeholder, mutuallyExclusiveId}: any) {
   return (<>
     <div className="prompt">{t(promptTKey)}</div>
     <Select placeholder={t(placeholder)} className="select" optionList={
       fieldList.filter((v: any, i: any) => {
-        return v.fieldType == fieldType
+        return v.fieldType == fieldType && v.fieldId != mutuallyExclusiveId
       }).map((v: any, i: any) => {
         return {
           "label": v.fieldName,
@@ -61,7 +61,7 @@ function DashboardConfig(props: any, ref: any) {
           let _expectedTimeFieldId = false;
           let _actualTimeFieldId = false;
           for (const field of _fieldList.reverse()) {
-            if (!_milestoneFieldId) {
+            if (!_milestoneFieldId && field.fieldType == FieldType.Text) {
               setMilestoneFieldId(field['fieldId'])
               _milestoneFieldId = true
               continue
@@ -151,9 +151,9 @@ function DashboardConfig(props: any, ref: any) {
         tableList.map((v: any) => { return { label: v.tableName, value: v.tableId } })
       } onChange={(e) => { setSelectedTableId(e) }} value={selectedTableId} onSelect={onSelect}></Select>
 
-      <FieldSelect t={t} fieldList={fieldList} promptTKey='field.milestone' fieldId={milestoneFieldId} setFieldId={setMilestoneFieldId} fieldType={FieldType.Text} placeholder="placeholder.pleaseSelectField"></FieldSelect>
-      <FieldSelect t={t} fieldList={fieldList} promptTKey='field.expectedTime' fieldId={expectedTimeFieldId} setFieldId={setExpectedTimeFieldId} fieldType={FieldType.DateTime} placeholder="placeholder.pleaseSelectDateField"></FieldSelect>
-      <FieldSelect t={t} fieldList={fieldList} promptTKey='field.actualTime' fieldId={actualTimeFieldId} setFieldId={setActualTimeFieldId} fieldType={FieldType.DateTime} placeholder="placeholder.pleaseSelectDateField"></FieldSelect>
+      <FieldSelect t={t} fieldList={fieldList} promptTKey='field.milestone' fieldId={milestoneFieldId} setFieldId={setMilestoneFieldId} fieldType={FieldType.Text} placeholder="placeholder.pleaseSelectField" mutuallyExclusiveId={null}></FieldSelect>
+      <FieldSelect t={t} fieldList={fieldList} promptTKey='field.expectedTime' fieldId={expectedTimeFieldId} setFieldId={setExpectedTimeFieldId} fieldType={FieldType.DateTime} placeholder="placeholder.pleaseSelectDateField" mutuallyExclusiveId={actualTimeFieldId}></FieldSelect>
+      <FieldSelect t={t} fieldList={fieldList} promptTKey='field.actualTime' fieldId={actualTimeFieldId} setFieldId={setActualTimeFieldId} fieldType={FieldType.DateTime} placeholder="placeholder.pleaseSelectDateField" mutuallyExclusiveId={expectedTimeFieldId}></FieldSelect>
       <div className="title">
         <div className="titlet">
           <a className="help" href="https://wingahead.feishu.cn/wiki/NjoJwa38WidGiikx8i2cyUeKnsd?from=from_copylink" target="_blank" rel="noopener noreferrer">帮助文档</a>
