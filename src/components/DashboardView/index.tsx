@@ -14,25 +14,29 @@ function c(className: any) {
 const stateStyleConfig = {
   finished: {
     color: "var(--finished)",
+    background: "var(--bg-finished)",
     text: "已完成"
   },
   unfinished: {
     color: "var(--unfinished)",
+    background: "var(--bg-unfinished)",
     text: "未完成"
   },
   overdueFinished: {
     color: "var(--overdueFinished)",
+    background: "var(--bg-overdueFinished)",
     text: "逾期已完成"
   },
   overdueUnfinished: {
     color: "var(--overdueUnfinished)",
+    background: "var(--bg-overdueUnfinished)",
     text: "逾期未完成"
   }
 }
 
 function abbrText(text: any) {
-  if (text.length > 10)
-    return text.slice(0, 10) + "...";
+  if (text.length > 30)
+    return text.slice(0, 30) + "...";
   return text;
 }
 
@@ -62,7 +66,7 @@ function formatTime(time: any) {
 function Item({ milestone, expectedTime, actualTime }: any) {
   const stateStyle = stateStyleConfig[computeState(expectedTime, actualTime)]
   return (
-    <div className={c("item")} style={{ '--primaryColor': stateStyle.color } as React.CSSProperties}>
+    <div className={c("item")} style={{ '--primaryColor': stateStyle.color, '--secondaryColor': stateStyle.background } as React.CSSProperties}>
       <div className={c("milestone")}>{abbrText(milestone)}</div>
       <div className={c("circle")}></div>
       <div className={c("state")}>{stateStyle.text}</div>
@@ -105,10 +109,10 @@ export function DashboardView(props: any) {
   return (
     <>
       <div className={c("space")}>
-        <div className={c("timeline")}>
-          <div className={c("itemBox")}>
-            {timelineData.map((item: any, i: any) => <Item key={i} milestone={item.record} expectedTime={item.expectedTime} actualTime={item.actualTime} />)}
+        <div className={c("itemBox")}>
+          <div className={c("timeline")}>
           </div>
+          {timelineData.map((item: any, i: any) => <Item key={i} milestone={item.record} expectedTime={item.expectedTime} actualTime={item.actualTime} />)}
         </div>
       </div>
     </>

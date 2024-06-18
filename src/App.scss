@@ -9,11 +9,17 @@ body[theme-mode="light"] {
     --text-shallow: #333;
     --text-shallow-2: #666;
     --finished: #0cbb52;
-    --overdueFinished: #FF8D1A;
-    --overdueUnfinished: #d30505;
+    --overdueFinished: #ff8d1a;
+    --overdueUnfinished: #d10505;
     --unfinished: #808080;
+    --bg-finished: rgba(12, 187, 82, .1);
+    --bg-overdueFinished: rgba(255, 141, 26, .1);
+    --bg-overdueUnfinished: rgba(209, 5, 5, .1);
+    --bg-unfinished: rgba(128, 128, 128, .1);
     --timeline: #CCCCCC;
-    --datetime: #CCCCCC;
+    --datetime: #1F2329;
+    --boarder-config: rgba(31, 35, 41, .15);
+
 }
 
 body[theme-mode="dark"] {
@@ -23,11 +29,16 @@ body[theme-mode="dark"] {
     --text-shallow: #CCC;
     --text-shallow-2: #999;
     --finished: #36e27b;
-    --overdueFinished: #FF8D1A;
+    --overdueFinished: #ff8d1a;
     --overdueUnfinished: #ff2c2c;
+    --bg-finished: rgba(12, 187, 82, .1);
+    --bg-overdueFinished: rgba(255, 141, 26, .1);
+    --bg-overdueUnfinished: rgba(209, 5, 5, .1);
+    --bg-unfinished: rgba(128, 128, 128, .1);
     --unfinished: #808080;
     --timeline: #CCCCCC;
-    --datetime: #CCCCCC
+    --datetime: #CCCCCC;
+    --boarder-config: rgba(207, 207, 207, .15);
 }
 
 html,

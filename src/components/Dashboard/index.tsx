@@ -61,7 +61,7 @@ export default function Dashboard() {
   useConfig(updateConfig)
 
   return (
-    <main style={isConfig ? {} : { borderTop: 'none' }}>
+    <main style={isConfig ? {} : { borderTop: 'none'}}>
       <div className='layout-view' >
         <_DashboardView
           t={t}

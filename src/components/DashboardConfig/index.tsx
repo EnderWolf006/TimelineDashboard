@@ -8,7 +8,7 @@ let isInited = false
 function FieldSelect({ t, fieldList, promptTKey, fieldId, setFieldId, fieldType }: any) {
   return (<>
     <div className="prompt">{t(promptTKey)}</div>
-    <Select placeholder={t('placeholder.pleaseSelectField')} size="large" className="select" optionList={
+    <Select placeholder={t('placeholder.pleaseSelectField')} className="select" optionList={
       fieldList.filter((v: any, i: any) => {
         return v.fieldType == fieldType
       }).map((v: any, i: any) => {
@@ -100,20 +100,19 @@ function DashboardConfig(props: any, ref: any) {
 
   return (
     <>
-      <div className="title">
-        <div className="titlet">
-          <div style={{ "display": "inline" }} >{t('title')}</div>
-          <a className="help" href="https://wingahead.feishu.cn/wiki/NjoJwa38WidGiikx8i2cyUeKnsd?from=from_copylink">帮助文档</a>
-        </div>
-      </div>
       <div className="prompt">{t('tableSource')}</div>
-      <Select placeholder={t('placeholder.pleaseSelectTable')} size="large" className="select" optionList={
+      <Select placeholder={t('placeholder.pleaseSelectTable')} className="select" optionList={
         tableList.map((v: any) => { return { label: v.tableName, value: v.tableId } })
       } onChange={(e) => { setSelectedTableId(e) }} value={selectedTableId} onSelect={onSelect}></Select>
 
       <FieldSelect t={t} fieldList={fieldList} promptTKey='field.milestone' fieldId={milestoneFieldId} setFieldId={setMilestoneFieldId} fieldType={FieldType.Text}></FieldSelect>
       <FieldSelect t={t} fieldList={fieldList} promptTKey='field.expectedTime' fieldId={expectedTimeFieldId} setFieldId={setExpectedTimeFieldId} fieldType={FieldType.DateTime}></FieldSelect>
       <FieldSelect t={t} fieldList={fieldList} promptTKey='field.actualTime' fieldId={actualTimeFieldId} setFieldId={setActualTimeFieldId} fieldType={FieldType.DateTime}></FieldSelect>
+      <div className="title">
+        <div className="titlet">
+          <a className="help" href="https://wingahead.feishu.cn/wiki/NjoJwa38WidGiikx8i2cyUeKnsd?from=from_copylink" target="_blank" rel="noopener noreferrer">帮助文档</a>
+        </div>
+      </div>
     </>
   )
 }

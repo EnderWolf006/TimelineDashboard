@@ -3,7 +3,7 @@ main {
     flex-direction: row;
     height: 100vh;
     position: relative;
-    border-top: 1px solid #5f5f5f9a;
+    border-top: .5px solid var(--boarder-config);
     box-sizing: border-box;
 }
 
@@ -14,13 +14,14 @@ main {
 }
 
 .layout-cfg {
-    border-left: 1px solid #5f5f5f9a;
+    border-left: .5px solid var(--boarder-config);
     flex: 0 340px;
     height: 100%;
     position: relative;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    padding-bottom: 14px;
 }
 
 .layout-cfg-main {
