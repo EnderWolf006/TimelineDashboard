@@ -5,12 +5,13 @@
   "field.expectedTime": "予定完了時間",
   "field.actualTime": "実際の完了時間",
   "placeholder.pleaseSelectField": "フィールドを選択してください",
-  "placeholder.pleaseSelectTable": "テーブルを選択してください",
+  "placeholder.pleaseSelectDateField": "日付フィールドを選択してください",
+  "placeholder.pleaseSelectTable": "データテーブルを選択してください",
   "placeholder.pleaseInputText": "テキストを入力してください",
   "button.confirm": "確認",
   "toast.error": "フォーム内のすべての内容を先に完了してください",
   "state.finished": "完了",
-  "state.overdueFinished": "期限超過で完了",
-  "state.overdueUnfinished": "期限超過で未完了",
+  "state.overdueFinished": "期限超過 - 完了",
+  "state.overdueUnfinished": "期限超過 - 未完了",
   "state.unfinished": "未完了"
 }

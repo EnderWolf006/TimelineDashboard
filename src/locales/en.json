@@ -1,16 +1,17 @@
 {
   "title": "Timeline",
   "tableSource": "Data Source",
-  "field.milestone": "Milestone Name",
-  "field.expectedTime": "Planned Completion Time",
+  "field.milestone": "Milestone",
+  "field.expectedTime": "Expected Completion Time",
   "field.actualTime": "Actual Completion Time",
   "placeholder.pleaseSelectField": "Please select a field",
-  "placeholder.pleaseSelectTable": "Please select a table",
+  "placeholder.pleaseSelectDateField": "Please select a date field",
+  "placeholder.pleaseSelectTable": "Please select a data table",
   "placeholder.pleaseInputText": "Please enter text",
   "button.confirm": "Confirm",
   "toast.error": "Please complete all fields in the form first",
   "state.finished": "Finished",
-  "state.overdueFinished": "Overdue and Finished",
-  "state.overdueUnfinished": "Overdue and Unfinished",
+  "state.overdueFinished": "Overdue - Finished",
+  "state.overdueUnfinished": "Overdue - Unfinished",
   "state.unfinished": "Unfinished"
 }
