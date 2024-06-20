@@ -21,7 +21,6 @@ export default function Dashboard() {
     milestoneFieldId: null,
     expectedTimeFieldId: null,
     actualTimeFieldId: null,
-    selectedTableId: null,
   })
 
   const isCreate = dashboard.state === DashboardState.Create
@@ -32,7 +31,6 @@ export default function Dashboard() {
         milestoneFieldId: null,
         expectedTimeFieldId: null,
         actualTimeFieldId: null,
-        selectedTableId: null,
       })
     }
   }, [i18n.language, isCreate])
@@ -48,8 +46,9 @@ export default function Dashboard() {
     if (timer.current) {
       clearTimeout(timer.current)
     }
-    const { customConfig } = res;
+    const { customConfig, dataConditions } = res;
     if (customConfig) {
+      customConfig.selectedTableId = dataConditions[0].tableId;
       setConfig(customConfig as any);
       timer.current = setTimeout(() => {
         //自动化发送截图。 预留3s给浏览器进行渲染，3s后告知服务端可以进行截图了（对域名进行了拦截，此功能仅上架部署后可用）。
@@ -114,8 +113,11 @@ function ConfigPanel(props: {
 
     if (!cfg) return
     dashboard.saveConfig({
-      customConfig: cfg,
-      dataConditions: [],
+      customConfig: (()=>{const {selectedTableId, ...tmp} = cfg;return tmp})(),
+      dataConditions:
+        [{
+          tableId: cfg.selectedTableId
+        }]
     } as any)
   }
 
