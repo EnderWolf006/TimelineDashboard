@@ -4,6 +4,7 @@ import { bitable, dashboard } from '@lark-base-open/js-sdk';
 import { Tooltip } from "@douyinfe/semi-ui";
 
 let configing = false
+let globalT = undefined as any
 
 function c(className: any) {
   if (configing) {
@@ -76,16 +77,22 @@ function Item({ milestone, expectedTime, actualTime }: any) {
       }
       <div className={c("circle")}></div>
       <div className={c("state")}>{stateStyle.text}</div>
-      <div className={c("datetime")}>{formatTime(expectedTime)}</div>
-
+      {
+        actualTime ?
+          <Tooltip content={`${globalT('field.expectedTime')}: ${formatTime(expectedTime)}`} position="right">
+            <div className={c("datetime")}>{formatTime(expectedTime)}</div>
+          </Tooltip> :
+          <div className={c("datetime")}>{formatTime(expectedTime)}</div>
+      }
     </div>
   )
 }
 
 export function DashboardView(props: any) {
   const { isConfig, t, previewConfig } = props;
+  globalT = t
   let config = props['config']
-  if (previewConfig) {        
+  if (previewConfig) {
     config = previewConfig
   }
   const [timelineData, setTimelineData] = useState([]) as any;
@@ -105,13 +112,13 @@ export function DashboardView(props: any) {
       for (const recordId of recordIdList) {
         const record = await milestoneField.getValue(recordId);
         const expectedTime = await expectedTimeField.getValue(recordId);
-        const actualTime = await actualTimeField.getValue(recordId);
+        const actualTime = await actualTimeField.getValue(recordId);        
         if (record && expectedTime) {
           dataTemp.push({ record: record[0].text, expectedTime, actualTime })
         }
       }
       // 按expectedTime排序
-      dataTemp.sort((a: any, b: any) => a.expectedTime - b.expectedTime)
+      dataTemp.sort((a: any, b: any) => a.expectedTime - b.expectedTime)      
       setTimelineData(dataTemp)
     })()
   }, [config])
