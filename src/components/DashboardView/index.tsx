@@ -104,21 +104,30 @@ export function DashboardView(props: any) {
     const { milestoneFieldId, expectedTimeFieldId, actualTimeFieldId, selectedTableId } = config;
     (async () => {
       const table = await bitable.base.getTable(selectedTableId);
-      const recordIdList = await table.getRecordIdList();
-      const milestoneField = await table.getFieldById(milestoneFieldId)
-      const expectedTimeField = await table.getFieldById(expectedTimeFieldId)
-      const actualTimeField = await table.getFieldById(actualTimeFieldId)
+      let recordIdData;
+      let token;
       const dataTemp = []
-      for (const recordId of recordIdList) {
-        const record = await milestoneField.getValue(recordId);
-        const expectedTime = await expectedTimeField.getValue(recordId);
-        const actualTime = await actualTimeField.getValue(recordId);        
-        if (record && expectedTime) {
-          dataTemp.push({ record: record[0].text, expectedTime, actualTime })
+      do {
+        recordIdData = await table.getRecordIdListByPage(token ? {
+          pageToken: token
+        } : {});
+
+        token = recordIdData.pageToken
+        const recordIdList = recordIdData.recordIds
+        const milestoneField = await table.getFieldById(milestoneFieldId)
+        const expectedTimeField = await table.getFieldById(expectedTimeFieldId)
+        const actualTimeField = await table.getFieldById(actualTimeFieldId)
+        for (const recordId of recordIdList) {
+          const record = await milestoneField.getValue(recordId);
+          const expectedTime = await expectedTimeField.getValue(recordId);
+          const actualTime = await actualTimeField.getValue(recordId);
+          if (record && expectedTime) {
+            dataTemp.push({ record: record[0].text, expectedTime, actualTime })
+          }
         }
-      }
+      } while (recordIdData.hasMore);
       // 按expectedTime排序
-      dataTemp.sort((a: any, b: any) => a.expectedTime - b.expectedTime)      
+      dataTemp.sort((a: any, b: any) => a.expectedTime - b.expectedTime)
       setTimelineData(dataTemp)
     })()
   }, [config])
